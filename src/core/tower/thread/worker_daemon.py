@@ -62,11 +62,11 @@ class WorkerDaemon(Thread):
 
                 if os.path.isdir(path):
                     self.print("Repository exists fetching",)
-                    # self.print_command(repo.fetch(), color="yellow")
+                    self.print_command(repo.fetch(), color="yellow")
                     self.print("Repository fetched")
                 else:
                     self.print("Repository does not exists cloning...")
-                    # self.print_command(Git.clone(service["repository"]["origin"], path), color="yellow")
+                    self.print_command(Git.clone(service["repository"]["origin"], path), color="yellow")
                     self.print("Repository cloned")
 
                 if service["tagging"] == "tag":
@@ -85,7 +85,7 @@ class WorkerDaemon(Thread):
 
                 self.print("Switching to branch {branch}".format(branch=branch))
                 self.print_command(repo.switch_branch(branch), color="yellow")
-                # self.print_command(repo.pull("origin", branch), color="yellow")
+                self.print_command(repo.pull("origin", branch), color="yellow")
 
                 # Change working directory for docker
                 os.chdir(path)
