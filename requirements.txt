@@ -1,0 +1,7 @@
+tabulate
+zmq
+cement
+docker-py
+sh
+
+
