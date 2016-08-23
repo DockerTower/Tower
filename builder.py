@@ -1,12 +1,12 @@
 import signal
-from cement.core.foundation import CementApp
 from cement.core.exc import CaughtSignal
-from controller.builder_controller import BuilderController
+from cement.core.foundation import CementApp
+from src.controller.builder_controller import BuilderController
 
 
 class Tower(CementApp):
     class Meta:
-        label = 'tower'
+        label = 'builder'
         handlers = [
             BuilderController
         ]

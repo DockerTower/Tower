@@ -4,12 +4,12 @@ FROM alpine:3.4
 # > At the moment, setting "LANG=C" on a Linux system *fundamentally breaks Python 3*, and that's not OK.
 ENV LANG C.UTF-8
 
-RUN apk add --update \
+RUN apk add --update --repository http://nl.alpinelinux.org/alpine/edge/testing/ \
     python3 \
     python3-dev \
-    libmemcached \
-    libmemcached-dev \
     py-pip \
+    py3-zmq \
+    libzmq \
     build-base \
   && rm -rf /var/cache/apk/*
 
@@ -24,8 +24,9 @@ RUN cd /usr/local/bin \
 WORKDIR /app
 
 COPY requirements.txt /app
-RUN pip install --no-cache-dir -r requirements.txt
-# COPY . /app
+RUN pip3 install --no-cache-dir -r requirements.txt
+COPY . /app
 VOLUME ["/app"]
 
-CMD "tail /dev/null"
+ENTRYPOINT ["/usr/bin/python3", "/app/builder.py"]
+CMD ["start"]

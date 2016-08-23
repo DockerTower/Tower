@@ -1,6 +1,8 @@
 import json
+
 from sh import git, tr
-from core.git.commit import Commit
+
+from src.core.git.commit import Commit
 
 
 class Repo(object):

@@ -1,5 +1,5 @@
 from sh import git
-from core.git.repo import Repo
+from src.core.git.repo import Repo
 
 
 class Git(object):

@@ -1,11 +1,11 @@
 import json
 import os
 import zmq
-from uuid import uuid1
-from termcolor import colored
 from threading import Thread
-from core.doker.docker import Docker
-from core.git.git import Git
+from uuid import uuid1
+from src.core.git.git import Git
+from termcolor import colored
+from src.core.docker.docker import Docker
 
 
 class WorkerDaemon(Thread):
