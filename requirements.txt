@@ -1,6 +1,5 @@
-termcolor
-tabulate
-zmq
 cement
 docker-py
 sh
+python-slugify
+Jinja2

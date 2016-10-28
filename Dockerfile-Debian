@@ -1,0 +1,29 @@
+FROM debian:jessie
+
+RUN apt update \
+    && apt install -y ca-certificates \
+    nginx \
+    git \
+    python3 \
+    python3-dev \
+    python3-pip
+
+WORKDIR /app
+COPY . /app
+VOLUME ["/app"]
+
+# Make some useful symlinks that are expected to exist
+RUN cd /usr/local/bin \
+	&& ln -s easy_install-3.5 easy_install \
+	&& ln -s idle3 idle \
+	&& ln -s pydoc3 pydoc \
+	&& ln -s python3 python \
+	&& ln -s python3-config python-config \
+	&& pip3 install -r /app/requirements.txt
+
+VOLUME ["/storage"]
+VOLUME ["/root/.ssh"]
+VOLUME ["/etc/nginx/conf.d/"]
+
+ENTRYPOINT ["/usr/bin/python3", "/app/tower.py"]
+CMD ["sh"]
